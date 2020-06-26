@@ -153,7 +153,8 @@ class SceneGameOver extends Phaser.Scene
                     } else {
                         data = JSON.parse(data);
                         sceneref.couponCodeExp.setText(data[1]);
-                        //sceneref.couponCodeExp.setWordWrapWidth(sceneref.scratch.displayWidth);
+                        sceneref.couponCodeExp.setWordWrapWidth(config.width*0.3);
+                        console.log(sceneref.couponCodeExp.style);
                         sceneref.couponCodeText.setText(data[0]);
                         
                         console.log("Legit EMAiL");
@@ -184,14 +185,14 @@ class SceneGameOver extends Phaser.Scene
 
             if (pointer.isDown)
             {
-                rt.erase(brush, pointer.x-150, pointer.y-150 );
+                rt.erase(brush, pointer.x-brush.displayWidth/2, pointer.y-brush.displayHeight/2 );
             }
 
         }, this);
 
         this.input.on('pointerdown', function (pointer) {
 
-            rt.erase(brush, pointer.x-150, pointer.y-150 );
+            rt.erase(brush, pointer.x-brush.displayWidth/2, pointer.y-brush.displayHeight/2);
 
         }, this);
     }
