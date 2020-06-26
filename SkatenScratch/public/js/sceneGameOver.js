@@ -47,7 +47,7 @@ class SceneGameOver extends Phaser.Scene
             var mask = new Phaser.Display.Masks.GeometryMask(this, graphics);
             //this.Instext.setMask(mask);
             
-            this.couponCodeText = this.add.text(scratchback.x,scratchback.y,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:1, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
+            this.couponCodeText = this.add.text(scratchback.x,scratchback.y-30,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:1, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
             this.couponCodeText.setText("SAMPLE CODE");
             this.couponCodeText.setMask(mask);
             this.couponCodeExp = this.add.text(scratchback.x,scratchback.y+45,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", maxLines:3, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
@@ -154,8 +154,8 @@ class SceneGameOver extends Phaser.Scene
                         data = JSON.parse(data);
                         sceneref.couponCodeExp.setText(data[1]);
                         sceneref.couponCodeExp.setWordWrapWidth(config.width*0.3);
-                        console.log(sceneref.couponCodeExp.style);
                         sceneref.couponCodeText.setText(data[0]);
+                        sceneref.couponCodeText.setWordWrapWidth(config.width*0.3);
                         
                         console.log("Legit EMAiL");
                         sceneref.goBtn.removeListener('pointerdown');
@@ -185,14 +185,14 @@ class SceneGameOver extends Phaser.Scene
 
             if (pointer.isDown)
             {
-                rt.erase(brush, pointer.x-brush.displayWidth, pointer.y-brush.displayHeight);
+                rt.erase(brush, pointer.x-brush.displayWidth*1.5, pointer.y-brush.displayHeight*1.5);
             }
 
         }, this);
 
         this.input.on('pointerdown', function (pointer) {
 
-            rt.erase(brush, pointer.x-brush.displayWidth, pointer.y-brush.displayHeight);
+            rt.erase(brush, pointer.x-brush.displayWidth*1.5, pointer.y-brush.displayHeight*1.5);
 
         }, this);
     }
