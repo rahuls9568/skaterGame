@@ -186,14 +186,14 @@ class SceneGameOver extends Phaser.Scene
 
             if (pointer.isDown)
             {
-                rt.erase(brush, pointer.x-brush.displayWidth*1.75, pointer.y-brush.displayHeight*1.75);
+                rt.erase(brush, pointer.x-brush.width*0.4, pointer.y-brush.height*0.4);
             }
 
         }, this);
 
         this.input.on('pointerdown', function (pointer) {
 
-            rt.erase(brush, pointer.x-brush.displayWidth*1.75, pointer.y-brush.displayHeight*1.75);
+            rt.erase(brush, pointer.x-brush.width*0.4, pointer.y-brush.height*0.4);
 
         }, this);
     }
