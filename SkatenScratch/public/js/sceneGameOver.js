@@ -36,9 +36,9 @@ class SceneGameOver extends Phaser.Scene
             this.agrid.placeAtIndex(112,scratchback);
             Align.scaleToGameH(scratchback,0.3,this);
             
-            this.couponCodeText = this.add.text(scratchback.x,scratchback.y,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", wordwrap:{width:scratchback.displayWidth}}).setOrigin(0.5);
+            this.couponCodeText = this.add.text(scratchback.x,scratchback.y,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", wordwrap:{width:game.config.width*0.3}}).setOrigin(0.5);
             this.couponCodeText.setText("SAMPLE CODE");
-            this.couponCodeExp = this.add.text(scratchback.x,scratchback.y+30,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", wordwrap:{width:scratchback.displayWidth}}).setOrigin(0.5);
+            this.couponCodeExp = this.add.text(scratchback.x,scratchback.y+30,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", wordwrap:{width:game.config.width*0.3}}).setOrigin(0.5);
             this.couponCodeExp.setText("code exp");
             this.scratch = this.add.image(0,0,'scratchCard').setOrigin(0.5).setTint(0x94948e);
             this.agrid.placeAtIndex(112,this.scratch);
