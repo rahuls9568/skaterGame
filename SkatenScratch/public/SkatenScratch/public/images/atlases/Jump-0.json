@@ -1,0 +1,103 @@
+{
+	"textures": [
+		{
+			"image": "Jump-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1638,
+				"h": 1638
+			},
+			"scale": 0.8,
+			"frames": [
+				{
+					"filename": "Jump_5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 731.2,
+						"h": 793.6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 731.2,
+						"h": 793.6
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 731.2,
+						"h": 793.6
+					}
+				},
+				{
+					"filename": "Jump_6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 604.8000000000001,
+						"h": 771.2
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 604.8000000000001,
+						"h": 771.2
+					},
+					"frame": {
+						"x": 0,
+						"y": 793.6,
+						"w": 604.8000000000001,
+						"h": 771.2
+					}
+				},
+				{
+					"filename": "Jump_4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 729.6,
+						"h": 688.8000000000001
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 729.6,
+						"h": 688.8000000000001
+					},
+					"frame": {
+						"x": 604.8000000000001,
+						"y": 793.6,
+						"w": 729.6,
+						"h": 688.8000000000001
+					}
+				},
+				{
+					"filename": "Jump_7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 733.6,
+						"h": 669.6
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 733.6,
+						"h": 669.6
+					},
+					"frame": {
+						"x": 731.2,
+						"y": 0,
+						"w": 733.6,
+						"h": 669.6
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.5"
+	}
+}
