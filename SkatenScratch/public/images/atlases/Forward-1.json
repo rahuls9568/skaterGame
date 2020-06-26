@@ -1,0 +1,82 @@
+{
+	"textures": [
+		{
+			"image": "Forward-1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 819,
+				"h": 1638
+			},
+			"scale": 0.8,
+			"frames": [
+				{
+					"filename": "Forward_2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 727.2,
+						"h": 534.4
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 727.2,
+						"h": 534.4
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 727.2,
+						"h": 534.4
+					}
+				},
+				{
+					"filename": "Forward_1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 700.8000000000001,
+						"h": 534.4
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 700.8000000000001,
+						"h": 534.4
+					},
+					"frame": {
+						"x": 0,
+						"y": 534.4,
+						"w": 700.8000000000001,
+						"h": 534.4
+					}
+				},
+				{
+					"filename": "Forward_6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 700,
+						"h": 534.4
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 700,
+						"h": 534.4
+					},
+					"frame": {
+						"x": 0,
+						"y": 1068.8,
+						"w": 700,
+						"h": 534.4
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.5"
+	}
+}
