@@ -180,20 +180,21 @@ class SceneGameOver extends Phaser.Scene
     {
         var rt = this.add.renderTexture(scratchback.x-scratchback.displayWidth/2, scratchback.y-scratchback.displayHeight/2, scratchback.displayWidth, scratchback.displayHeight);
         rt.draw('scratchCard',0,0);
-        var brush = this.make.image({ key: 'brushImg' }, false).setOrigin(0.5).setScale(0.4);
+        var brush = this.make.image({ key: 'brushImg' }, false).setScale(0.4);
+        var offset = {x:brush.displayWidth*1.5,y:brush.displayHeight*1.5};
 
         this.input.on('pointermove', function (pointer) {
 
             if (pointer.isDown)
             {
-                rt.erase(brush, pointer.x, pointer.y);
+                rt.erase(brush, pointer.x - offset.x, pointer.y - offset.y);
             }
 
         }, this);
 
         this.input.on('pointerdown', function (pointer) {
 
-            rt.erase(brush, pointer.x, pointer.y);
+            rt.erase(brush, pointer.x - offset.x, pointer.y - offset.y);
 
         }, this);
     }
