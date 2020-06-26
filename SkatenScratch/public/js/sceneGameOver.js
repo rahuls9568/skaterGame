@@ -11,7 +11,7 @@ class SceneGameOver extends Phaser.Scene
         this.load.image('GObg','images/introBG.png')
         this.load.image('scratchCard','images/scratch-cover.jpg');
         this.load.image('retryImg','images/retry_button.png');
-        this.load.image('goBtn','images/btn-submit.png');
+        this.load.image('goBtn','images/submit.png');
         this.load.image('brushImg','images/tomato.png');
 
         this.load.audio('BtnClickSfx','audio/clickAudio.wav');
