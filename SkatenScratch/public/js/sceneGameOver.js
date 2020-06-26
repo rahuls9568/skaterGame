@@ -35,22 +35,22 @@ class SceneGameOver extends Phaser.Scene
             this.goBG = this.add.image(0,0,'GObg').setOrigin(0.5);
             this.agrid.placeAtIndex(112,this.goBG);
             Align.scaleToGameH(this.goBG,1,this);
-            var scratchback = this.add.image(0,0,'scratchCard').setOrigin(0.5).setTint(0x000000);
-            this.agrid.placeAtIndex(112,scratchback);
-            Align.scaleToGameH(scratchback,0.3,this);
+            this.scratchback = this.add.image(0,0,'scratchCard').setOrigin(0.5).setTint(0x000000);
+            this.agrid.placeAtIndex(112,this.scratchback);
+            Align.scaleToGameH(this.scratchback,0.3,this);
             
             var graphics = this.make.graphics();
 
             // graphics.fillStyle(0xffffff);
-            graphics.fillRect(scratchback.x-scratchback.displayWidth/2, scratchback.y-scratchback.displayHeight/2, scratchback.displayWidth, scratchback.displayHeight);
+            graphics.fillRect(this.scratchback.x-this.scratchback.displayWidth/2, this.scratchback.y-this.scratchback.displayHeight/2, this.scratchback.displayWidth, this.scratchback.displayHeight);
 
             var mask = new Phaser.Display.Masks.GeometryMask(this, graphics);
             //this.Instext.setMask(mask);
             
-            this.couponCodeText = this.add.text(scratchback.x,scratchback.y-30,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:1, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
+            this.couponCodeText = this.add.text(this.scratchback.x,this.scratchback.y-30,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:1, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
             this.couponCodeText.setText("SAMPLE CODE");
             this.couponCodeText.setMask(mask);
-            this.couponCodeExp = this.add.text(scratchback.x,scratchback.y+45,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", maxLines:3, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
+            this.couponCodeExp = this.add.text(this.scratchback.x,this.scratchback.y+45,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", maxLines:3, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
             this.couponCodeExp.setText("code exp");
             this.couponCodeExp.setMask(mask);
             this.scratch = this.add.image(0,0,'scratchCard').setOrigin(0.5).setTint(0x94948e);
@@ -153,9 +153,10 @@ class SceneGameOver extends Phaser.Scene
                     } else {
                         data = JSON.parse(data);
                         sceneref.couponCodeExp.setText(data[1]);
-                        sceneref.couponCodeExp.setWordWrapWidth(config.width*0.3);
+                        console.log(sceneref.scratchback.displayWidth);
+                        sceneref.couponCodeExp.setWordWrapWidth(sceneref.scratchback.displayWidth);
                         sceneref.couponCodeText.setText(data[0]);
-                        sceneref.couponCodeText.setWordWrapWidth(config.width*0.3);
+                        sceneref.couponCodeText.setWordWrapWidth(sceneref.scratchback.displayWidth);
                         
                         console.log("Legit EMAiL");
                         sceneref.goBtn.removeListener('pointerdown');
@@ -185,14 +186,14 @@ class SceneGameOver extends Phaser.Scene
 
             if (pointer.isDown)
             {
-                rt.erase(brush, pointer.x-brush.displayWidth*1.5, pointer.y-brush.displayHeight*1.5);
+                rt.erase(brush, pointer.x-brush.displayWidth*1.75, pointer.y-brush.displayHeight*1.75);
             }
 
         }, this);
 
         this.input.on('pointerdown', function (pointer) {
 
-            rt.erase(brush, pointer.x-brush.displayWidth*1.5, pointer.y-brush.displayHeight*1.5);
+            rt.erase(brush, pointer.x-brush.displayWidth*1.75, pointer.y-brush.displayHeight*1.75);
 
         }, this);
     }
