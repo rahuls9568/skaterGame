@@ -47,10 +47,10 @@ class SceneGameOver extends Phaser.Scene
             var mask = new Phaser.Display.Masks.GeometryMask(this, graphics);
             //this.Instext.setMask(mask);
             
-            this.couponCodeText = this.add.text(scratchback.x,scratchback.y,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:1, wordwrap:{width:scratchback.displayWidth}}).setOrigin(0.5);
+            this.couponCodeText = this.add.text(scratchback.x,scratchback.y,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:1, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
             this.couponCodeText.setText("SAMPLE CODE");
             this.couponCodeText.setMask(mask);
-            this.couponCodeExp = this.add.text(scratchback.x,scratchback.y+45,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", maxLines:3, wordwrap:{width:scratchback.displayWidth}}).setOrigin(0.5);
+            this.couponCodeExp = this.add.text(scratchback.x,scratchback.y+45,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", maxLines:3, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
             this.couponCodeExp.setText("code exp");
             this.couponCodeExp.setMask(mask);
             this.scratch = this.add.image(0,0,'scratchCard').setOrigin(0.5).setTint(0x94948e);
@@ -153,6 +153,7 @@ class SceneGameOver extends Phaser.Scene
                     } else {
                         data = JSON.parse(data);
                         sceneref.couponCodeExp.setText(data[1]);
+                        //sceneref.couponCodeExp.setWordWrapWidth(sceneref.scratch.displayWidth);
                         sceneref.couponCodeText.setText(data[0]);
                         
                         console.log("Legit EMAiL");
