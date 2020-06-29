@@ -16,10 +16,22 @@
     <script src="js/sceneInstruction.js"></script>
     <script src="js/sceneGameOver.js"></script>
     <script src="js/main.js"></script>
+    <style>
+        #phaser-game
+        {
+            color: chartreuse;
+            width: 100%;
+            height: 100%;
+            margin-top: -8px;
+            margin-left: -8px;
+            padding: 0px;
+            border: 0px;
+        }
+    </style>
 </head>
 <body>
-
-    <input type="text" name="emailField" id="emailText" style="display: none;">
-
+    <div id ="phaser-game">
+        <input type="text" name="emailField" id="emailText" style="display: none;">
+    </div>
 </body>
 </html>
