@@ -79,7 +79,7 @@ function GetSettings(width,height)
 {
     setting = fontSettings.pc;
     var aspect = width/height;
-    console.log(aspect);
+    console.log(width + "   " + height + "\n" + aspect);
     if(aspect < 0.8)
     {
         //4:3 resolution
