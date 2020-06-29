@@ -24,7 +24,7 @@ var fontSettings = {
         scoreLifeText:"bold 40px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.0425,
+        thrustspeed: 0.044,
         jumpSpeed:-1,
         gravity:0.002,
     },
@@ -33,7 +33,7 @@ var fontSettings = {
         scoreLifeText:"bold 30px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.0425,
+        thrustspeed: 0.044,
         jumpSpeed:-0.85,
         gravity:0.002,
     } 
