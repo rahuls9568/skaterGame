@@ -15,7 +15,7 @@ var fontSettings = {
         scoreLifeText:"bold 22px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.0875,
+        thrustspeed: 0.085,
         jumpSpeed:-0.9,
         gravity:0.002,
     },
