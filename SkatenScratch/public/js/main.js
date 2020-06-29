@@ -24,7 +24,7 @@ var fontSettings = {
         scoreLifeText:"bold 40px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.0465,
+        thrustspeed: 0.046,
         jumpSpeed:-1,
         gravity:0.002,
     },
@@ -33,7 +33,7 @@ var fontSettings = {
         scoreLifeText:"bold 30px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.0465,
+        thrustspeed: 0.046,
         jumpSpeed:-0.85,
         gravity:0.002,
     } 
@@ -95,6 +95,6 @@ function GetSettings(width,height)
         //18:9 and 19.5:9 and 18:10
         setting = fontSettings.mobile19x9;
     }
-    console.log(setting);
+    //console.log(setting);
     return setting;
 }
