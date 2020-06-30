@@ -8,7 +8,7 @@ class SceneMain extends Phaser.Scene
     {
         this.scene.bringToTop();
         
-        this.load.image('gamebg','images/assets/BG6.jpg');
+        this.load.image('gamebg','images/assets/BG7.jpg');
 
         this.load.image('introBg','images/Intro Screen/assets/background.jpg')
         this.load.image('introCover','images/Intro Screen/assets/intro-title.png');
