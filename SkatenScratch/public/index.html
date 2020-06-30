@@ -16,10 +16,31 @@
     <script src="js/sceneInstruction.js"></script>
     <script src="js/sceneGameOver.js"></script>
     <script src="js/main.js"></script>
+    <style>
+        #phaser-game
+        {
+            color: chartreuse;
+            width: 100%;
+            height: 100%;
+            margin-top: -8px;
+            margin-left: -8px;
+            padding: 0px;
+            border: 0px;
+        }
+    </style>
+    <style media='screen' type='text/css'>
+        @font-face {
+          font-family: myFont;
+          src: url('fonts/Molot.otf');
+          font-weight:400;
+          font-weight:normal;
+        }
+  </style>
 </head>
 <body>
-
-    <input type="text" name="emailField" id="emailText" style="display: none;">
-
+    <div id ="phaser-game">
+        <input type="text" name="emailField" id="emailText" style="display: none;">
+    </div>
+    <div style="font-family:myFont; position:absolute; left:-1000px; visibility:hidden;">.</div>
 </body>
 </html>

@@ -8,6 +8,7 @@ var JUMP_SPEED = 0, GRAVITY = 0, THRUST_SPEED = 0;
 var GAME_OVER_TYPE = "FAILED";
 var shapes = null;
 var BACK_X = 0;
+var oil1dist = 0, oil2dist = 0;
 class SceneGame2 extends Phaser.Scene
 {
     constructor()
@@ -30,7 +31,11 @@ class SceneGame2 extends Phaser.Scene
         this.load.image('num2','images/Game UI/assets/no-02.png')
         this.load.image('num3','images/Game UI/assets/no-03.png')
         this.load.image('num4','images/Game UI/assets/no-04.png')
-        this.load.image('star','images/Game UI/assets/star.png')
+        this.load.image('star','images/Game UI/assets/cruncha-badge.png')
+
+        this.load.image('oilmessage','images/Game UI/Oil-ahead-text.png');
+        this.load.image('bengalgrammessage','images/Game UI/bengal-gram-text.png');
+        this.load.image('maizemessage','images/Game UI/maiz-text.png');
 
         this.load.atlas('forwardAtlas','images/atlases/Forward-0.png','images/atlases/Forward-0.json');
         this.load.atlas('forward2Atlas','images/atlases/Forward-1.png','images/atlases/Forward-1.json');
@@ -39,7 +44,7 @@ class SceneGame2 extends Phaser.Scene
 
         this.load.json("physics", "images/assets/skatePhysics3.json");
 
-        this.load.audio('gameHitSfx','audio/Hit.mp3');
+        this.load.audio('gameHitSfx','audio/wrong.mp3');
         this.load.audio('gameDingSfx','audio/ding.mp3');
     }
     
@@ -59,6 +64,7 @@ class SceneGame2 extends Phaser.Scene
         this.resetTimer = 0;
 
         this.collectibleGroup = this.add.group();
+        this.RagiGroup = this.add.group();
         this.obstacleGroup = this.add.group();
         this.bgGroup = this.add.group();
         this.bgDropGroup = this.add.group();
@@ -70,33 +76,46 @@ class SceneGame2 extends Phaser.Scene
         GRAVITY = currentFont.gravity;
         THRUST_SPEED = currentFont.thrustspeed;
         //console.log(this.cam);
+        this.bg = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});
+        this.bg2 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});            //,render: { sprite: { xOffset: 100, yOffset: 125 } }
+        this.bg3 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
+        this.bg4 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
+
+        this.oilmessage1 = this.add.image(0,0,'oilmessage').setOrigin(0.5);
+        this.oilmessage2 = this.add.image(0,0,'oilmessage').setOrigin(0.5);
         
         this.agrid = new AlignGrid({scene:this,rows:15,cols:15});
         this.agrid.showNumbers();
 
+        this.agrid.placeAtIndex(110,this.oilmessage2);
+        Align.scaleToGameH(this.oilmessage2,0.2,this);
+        
+        this.agrid.placeAtIndex(110,this.oilmessage1);
+        Align.scaleToGameH(this.oilmessage1,0.2,this);
         ///////////////////.......BACKGROUNDS......\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        this.bg = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});
+        // this.bg = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});
         //this.agrid.placeAtIndex(112,this.bg);
         Align.scaleToGameH(this.bg,1,this);
         this.bg.setPosition(0 + this.bg.centerOfMass.x, config.height*0.865 + this.bg.centerOfMass.y);
         this.bg.body.gravityScale.x = 0;
         this.bg.body.gravityScale.y = 0;
         //console.log(this.bg);
-        this.bg2 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});            //,render: { sprite: { xOffset: 100, yOffset: 125 } }
+        // this.bg2 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});            //,render: { sprite: { xOffset: 100, yOffset: 125 } }
         // this.agrid.placeAtIndex(90,this.bg2);
         Align.scaleToGameH(this.bg2,1,this);
         this.bg2.setPosition(this.cam.scrollX + this.bg.displayWidth + this.bg2.centerOfMass.x, config.height*0.865+ this.bg2.centerOfMass.y);
         this.bg2.body.gravityScale.x = 0;
         this.bg2.body.gravityScale.y = 0;
+        this.oilmessage2.x+=this.bg.displayWidth;
         //BACK_X = this.bg.displayWidth+this.bg2.centerOfMass.x;
 
-        this.bg3 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
+        // this.bg3 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
         Align.scaleToGameH(this.bg3,1,this);
         this.bg3.setPosition(-this.bg3.displayWidth*0.107 + this.bg3.centerOfMass.x, config.height*0.9 + this.bg3.centerOfMass.y)
         this.bg3.body.gravityScale.x = 0;
         this.bg3.body.gravityScale.y = 0;
         
-        this.bg4 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
+        // this.bg4 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
         Align.scaleToGameH(this.bg4,1,this);
         this.bg4.setPosition(this.bg.displayWidth - this.bg4.displayWidth*0.107+ this.bg4.centerOfMass.x, config.height*0.9 + this.bg4.centerOfMass.y)
         this.bg4.body.gravityScale.x = 0;
@@ -110,6 +129,7 @@ class SceneGame2 extends Phaser.Scene
         this.bgGroup.add(this.bg2);
         this.bgDropGroup.add(this.bg3);
         this.bgDropGroup.add(this.bg4);
+        
 
         //ANIMATIONS
         this.anims.create({
@@ -222,6 +242,7 @@ class SceneGame2 extends Phaser.Scene
             this.CheckPlayerObstacleCollision(bodyA.gameObject, bodyB.gameObject);
             this.CheckPlayerGroundCollision(bodyA.gameObject,bodyB.gameObject);
             this.CheckPlayerDropCollision(bodyA.gameObject, bodyB.gameObject);
+            this.CheckPlayerRagiCollision(bodyA.gameObject,bodyB.gameObject);
             this.CheckObjectBgCollision(bodyA.gameObject,bodyB.gameObject);
         }, this);
         this.matter.world.on('collisionend',function(event, bodyA,bodyB){
@@ -238,6 +259,11 @@ class SceneGame2 extends Phaser.Scene
         this.isTouchFlag = true;
         this.Vy = 0;
         this.player.play('landAnim');
+
+        console.log(this.bg.x + "\t"+ this.oilmessage1.x)
+        console.log(this.bg.x-this.oilmessage1.x)
+        oil1dist = this.bg.x-this.oilmessage1.x;
+        oil2dist = this.bg2.x-this.oilmessage2.x;
     }
 
     update()
@@ -270,7 +296,7 @@ class SceneGame2 extends Phaser.Scene
         {
             if(GAME_OVER_TYPE == "WIN")
             {
-                var text = this.add.text(this.cam.scrollX + config.width/2,config.height/2,"SUCCESS",{font:"bold 40px Arial",fill:"#d9d900",align:"center"}).setOrigin(0.5)
+                var text = this.add.text(this.cam.scrollX + config.width/2,config.height/2,"SUCCESS",{fontFamily:"myFont",fontSize:40,fill:"#d9d900",align:"center"}).setOrigin(0.5)
                 this.time.delayedCall(1250,this.destroyObject,[[text]],this);
             }
             this.MovePLayer();
@@ -400,6 +426,8 @@ class SceneGame2 extends Phaser.Scene
                 if(b.x + b.displayWidth < this.cam.scrollX)
                 {
                     b.x = this.cam.scrollX -(Math.abs(this.cam.scrollX-prevPos)) + b.centerOfMass.x + b.displayWidth;
+                    this.oilmessage1.x = this.bg.x - oil1dist;
+                    this.oilmessage2.x = this.bg2.x - oil2dist;
                 }
             }
         }.bind(this))
@@ -434,6 +462,28 @@ class SceneGame2 extends Phaser.Scene
             else
             {
                 this.collectibleGroup.remove(b,true,true);
+            }
+        }.bind(this));
+
+        this.RagiGroup.children.each(function (b) {
+            if(b != null)
+            {
+                if (b.active) {
+                    if ( b.x + b.displayWidth/2 < this.cam.scrollX) {
+                        // console.log("bullet out of bounds");
+                        //b.x-= OBJ_MOVE_SPEED;
+                        b.active = false;
+                        this.collectibleGroup.remove(b,true,true);
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                this.RagiGroup.remove(b,true,true);
             }
         }.bind(this));
 
@@ -490,6 +540,8 @@ class SceneGame2 extends Phaser.Scene
                             height: 120
                         });
                         Align.scaleToGameH(obj,0.15,this);
+                        this.collectibleGroup.add(obj);
+                        
                         break;
                     case 1:
                         obj = this.matter.add.image(0,0,'ragiImg').setOrigin(0.5);
@@ -499,6 +551,7 @@ class SceneGame2 extends Phaser.Scene
                             height: 640
                         });
                         Align.scaleToGameH(obj,0.18,this);
+                        this.RagiGroup.add(obj);
                         break;
                     // case 2:
                     //     obj = this.matter.add.image(0,0,'tomatoImg').setOrigin(0.5);
@@ -512,7 +565,6 @@ class SceneGame2 extends Phaser.Scene
                 obj.setCollisionGroup(0);
                 obj.setSensor(true);
                 this.agrid.placeAtIndex(rnd<50?topRow:botRow,obj);
-                this.collectibleGroup.add(obj);
                 obj.x = this.cam.scrollX + this.cam.width + 50;
                 obj.body.gravityScale.x = 0;
                 obj.body.gravityScale.y = 0;
@@ -674,6 +726,8 @@ class SceneGame2 extends Phaser.Scene
             if(collectible)
             {
                 var text = this.add.text(collectible.x, collectible.y-20,"+10",{ font: 'bold 35px Arial', color: '#f0ec0e', wordWrap: { width: 200 } }).setOrigin(0.5);
+                var notice = this.add.image(collectible.x+30,collectible.y-50, 'maizemessage');
+                Align.scaleToGameH(notice,0.2,this);
                 this.tweens.add({
                     targets: text,
                     duration: 900,
@@ -684,7 +738,48 @@ class SceneGame2 extends Phaser.Scene
                     duration: 900,
                     x: this.cam.scrollX+this.cam.width,
                 });
-                this.time.delayedCall(1000,this.destroyObject,[[text]],this);
+                this.time.delayedCall(1000,this.destroyObject,[[text,notice]],this);
+                this.time.delayedCall(1000,this.scoreObject,[[10]],this);
+
+                collectible.setActive(false);
+                collectible.setVisible(false);
+                collectible.destroy();
+                collectible = null;
+                
+                this.sound.play('gameDingSfx');
+            }
+        }
+    }
+
+    CheckPlayerRagiCollision(bodyA, bodyB) {
+        if(this.isGameOver != false)
+            return;
+        if(bodyA == null || bodyB == null)
+            return;
+        var collectible;
+        if (bodyA.active && bodyA.visible && bodyB.active && bodyB.visible) {
+            if (this.RagiGroup.contains(bodyA) && bodyB == this.player) {
+                collectible = bodyA;
+            } else if (this.player == bodyA && this.RagiGroup.contains(bodyB)) {
+                collectible = bodyB;
+            }
+
+            if(collectible)
+            {
+                var text = this.add.text(collectible.x, collectible.y-20,"+10",{ font: 'bold 35px Arial', color: '#f0ec0e', wordWrap: { width: 200 } }).setOrigin(0.5);
+                var notice = this.add.image(collectible.x+30,collectible.y-50, 'bengalgrammessage');
+                Align.scaleToGameH(notice,0.2,this);
+                this.tweens.add({
+                    targets: text,
+                    duration: 900,
+                    y:this.cam.scrollY,
+                });
+                this.tweens.add({
+                    targets : text,
+                    duration: 900,
+                    x: this.cam.scrollX+this.cam.width,
+                });
+                this.time.delayedCall(1000,this.destroyObject,[[text,notice]],this);
                 this.time.delayedCall(1000,this.scoreObject,[[10]],this);
 
                 collectible.setActive(false);

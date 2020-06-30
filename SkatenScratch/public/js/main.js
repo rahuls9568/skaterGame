@@ -3,37 +3,41 @@ var game;
 var fontSettings = {
     mobile16x9:{
         name:"16x9",
+        instText:8,
         scoreLifeText:"bold 20px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.05,
+        thrustspeed: 0.0475,
         jumpSpeed:-0.875,
         gravity:0.002,
     },
     mobile19x9:{
         name:"19x9",
+        instText:8,
         scoreLifeText:"bold 22px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.08,
+        thrustspeed: 0.085,
         jumpSpeed:-0.9,
         gravity:0.002,
     },
     mobile4x3:{
         name:"4x3",
+        instText:10,
         scoreLifeText:"bold 40px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.05,
+        thrustspeed: 0.0475,
         jumpSpeed:-1,
         gravity:0.002,
     },
     pc:{
         name:"pc",
+        instText:12,
         scoreLifeText:"bold 30px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
-        thrustspeed: 0.05,
+        thrustspeed: 0.0475,
         jumpSpeed:-0.85,
         gravity:0.002,
     } 
@@ -64,7 +68,7 @@ var config = {
     physics: {
         default: 'matter',
         matter: {
-            debug: true,
+            debug: false,
             gravity: {
                 x: 0,
                 y: 1
@@ -72,14 +76,13 @@ var config = {
         }
     }
 };
-console.log(currentFont);
 game = new Phaser.Game(config);
 
 function GetSettings(width,height)
 {
     setting = fontSettings.pc;
     var aspect = width/height;
-    console.log(width + "   " + height + "\n" + aspect);
+    console.log(aspect);
     if(aspect < 0.8)
     {
         //4:3 resolution
@@ -95,6 +98,6 @@ function GetSettings(width,height)
         //18:9 and 19.5:9 and 18:10
         setting = fontSettings.mobile19x9;
     }
-    //console.log(setting);
+    console.log(setting);
     return setting;
 }
