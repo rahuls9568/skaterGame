@@ -93,7 +93,7 @@ function GetSettings(width,height)
         //16:10 and 16:9
         setting = fontSettings.mobile16x9;
     }
-    if(aspect < 0.56)
+    if(aspect < 0.48)
     {
         //18:9 and 19.5:9 and 18:10
         setting = fontSettings.mobile19x9;
