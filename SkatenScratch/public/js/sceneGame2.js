@@ -85,7 +85,7 @@ class SceneGame2 extends Phaser.Scene
         this.oilmessage2 = this.add.image(0,0,'oilmessage').setOrigin(0.5);
         
         this.agrid = new AlignGrid({scene:this,rows:15,cols:15});
-        //this.agrid.showNumbers();
+        this.agrid.showNumbers();
 
         this.agrid.placeAtIndex(110,this.oilmessage2);
         Align.scaleToGameH(this.oilmessage2,0.2,this);

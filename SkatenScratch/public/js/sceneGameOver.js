@@ -13,6 +13,13 @@ class SceneGameOver extends Phaser.Scene
         this.load.image('retryImg','images/retry-button.png');
         this.load.image('goBtn','images/submit.png');
         this.load.image('brushImg','images/tomato.png');
+        this.load.image('gologoImg','images/logo.png');
+        this.load.image('gotextImg','images/Retry screen text.png');
+        this.load.image('gocoverimg','images/Intro Screen/assets/intro-title.png')
+        this.load.image('visitImg','images/BUTTON.jpg')
+        this.load.image('goInsBtn','images/Intro Screen/assets/insturctions-btn.png');
+        this.load.image('gohtplayimg','images/How to play.png');
+
 
         this.load.audio('BtnClickSfx','audio/clickAudio.wav');
         
@@ -28,7 +35,7 @@ class SceneGameOver extends Phaser.Scene
         Align.scaleToGameH(this.bg,1,this);
 
         this.formutil = new FormUtil({scene:this,rows:15,cols:15});
-        //this.formutil.showNumbers();
+        this.formutil.showNumbers();
         
         if(GAME_OVER_TYPE == "WIN")
         {
@@ -38,7 +45,12 @@ class SceneGameOver extends Phaser.Scene
             this.scratchback = this.add.image(0,0,'scratchCard').setOrigin(0.5).setTint(0x000000);
             this.agrid.placeAtIndex(112,this.scratchback);
             Align.scaleToGameH(this.scratchback,0.3,this);
+            this.logo = this.add.image(config.width/2,config.height,'gologoImg').setOrigin(0.5,1);
+            Align.scaleToGameW(this.logo,0.25,this);
             
+            var wohooText = this.add.text(this.scratchback.x,this.scratchback.y-this.scratchback.displayHeight,"WOOHOO!",{fontFamily:"myFont",fontSize:currentFont.instText*4,fill:"#f0ec0e",align:"center"}).setOrigin(0.5);
+            var wohooText2 = this.add.text(wohooText.x,wohooText.y+30,"You've earned a reward",{fontFamily:"myFont",fontSize:currentFont.instText*2,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
+
             var graphics = this.make.graphics();
 
             // graphics.fillStyle(0xffffff);
@@ -46,8 +58,9 @@ class SceneGameOver extends Phaser.Scene
 
             var mask = new Phaser.Display.Masks.GeometryMask(this, graphics);
             //this.Instext.setMask(mask);
-            
-            this.couponCodeText = this.add.text(this.scratchback.x,this.scratchback.y-45,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:2, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
+            var couponText = this.add.text(this.scratchback.x, this.scratchback.y-this.scratchback.displayHeight*0.4,"This one is for you",{font:currentFont.codeText,fill:"#f0ec0e",align:"center",wordWrap:{width:config.width*0.3}}).setOrigin(0.5,0);
+            couponText.setMask(mask);
+            this.couponCodeText = this.add.text(this.scratchback.x,this.scratchback.y,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:2, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
             this.couponCodeText.setText("SAMPLE CODE");
             this.couponCodeText.setMask(mask);
             this.couponCodeExp = this.add.text(this.scratchback.x,this.scratchback.y+50,"",{font:currentFont.codeText/2,fill:"#FFFFFF",align:"center", maxLines:4, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
@@ -58,7 +71,7 @@ class SceneGameOver extends Phaser.Scene
             Align.scaleToGameH(this.scratch,0.3,this);
             
             this.goBtn = this.add.image(0,0,'goBtn').setOrigin(0.5).setInteractive();
-            this.agrid.placeAtIndex(202,this.goBtn);
+            this.agrid.placeAtIndex(187,this.goBtn);
             Align.scaleToGameW(this.goBtn,0.15,this);
             this.BtnInitScale = {x:this.goBtn.scaleX,y:this.goBtn.scaleY};
             this.BtnOverScale = {x:this.goBtn.scaleX*0.9,y:this.goBtn.scaleY*0.9};
@@ -74,14 +87,50 @@ class SceneGameOver extends Phaser.Scene
             },this);
             
             this.formutil.scaleToGameW("emailText",0.6);
-            this.formutil.placeElementAt(187,"emailText");
+            this.formutil.placeElementAt(172,"emailText");
             this.formutil.showElement("emailText");
         }
         else
         {
+            this.coverImg = this.add.image(0,0,'gocoverimg').setOrigin(0.5);
             this.retryBtn = this.add.image(0,0,'retryImg').setOrigin(0.5).setInteractive();
-            this.agrid.placeAtIndex(112,this.retryBtn);
+            this.htp = this.add.image(0,0,'gohtplayimg').setOrigin(0.5,0);
+            this.ins = this.add.image(0,0,'goInsBtn').setOrigin(0.5).setInteractive();
+            this.text = this.add.image(0,0,'gotextImg').setOrigin(0.5,0);
+
+            this.agrid.placeAtIndex(97,this.coverImg);
+            Align.scaleToGameH(this.coverImg,0.5,this);
+            Align.scaleToGameW(this.text,0.5,this);
+            this.text.x = this.coverImg.x;
+            this.text.y = this.coverImg.y + this.coverImg.displayHeight/2;
+            this.agrid.placeAtIndex(185,this.retryBtn);
             Align.scaleToGameW(this.retryBtn,0.3,this);
+            this.agrid.placeAtIndex(189,this.ins);
+            Align.scaleToGameW(this.ins,0.1,this);
+            this.htp.x = this.ins.x;
+            this.htp.y = this.ins.y+this.ins.displayHeight/4;
+            Align.scaleToGameW(this.htp,0.15,this);
+
+            this.insInitScale = {x:this.ins.scaleX,y:this.ins.scaleY}
+            this.insOverScale ={x:this.ins.scaleX*0.9,y:this.ins.scaleY*0.9}
+            this.ins.on('pointerover',function(pointer){
+                this.ins.setScale(this.insOverScale.x,this.insOverScale.y);
+            },this);
+            this.ins.on('pointerout',function(pointer){
+                this.ins.setScale(this.insInitScale.x,this.insInitScale.y);
+            },this);
+            this.ins.on('pointerdown',function(pointer){
+                this.ins.removeListener('pointerdown');
+                this.ins.removeListener('pointerover');
+                this.ins.removeListener('pointerout');
+                game.scene.start('SceneInstruction');
+                this.retryBtn.removeListener('pointerdown');
+                this.retryBtn.removeListener('pointerover');
+                this.retryBtn.removeListener('pointerout');
+                // game.scene.start('SceneGame');
+                this.sound.play('BtnClickSfx');
+            },this);
+
             this.BtnInitScale = {x:this.retryBtn.scaleX,y:this.retryBtn.scaleY};
             this.BtnOverScale = {x:this.retryBtn.scaleX*0.9,y:this.retryBtn.scaleY*0.9};
             this.retryBtn.on('pointerover',function(pointer){
@@ -94,6 +143,9 @@ class SceneGameOver extends Phaser.Scene
                 this.retryBtn.removeListener('pointerdown');
                 this.retryBtn.removeListener('pointerover');
                 this.retryBtn.removeListener('pointerout');
+                this.ins.removeListener('pointerdown');
+                this.ins.removeListener('pointerover');
+                this.ins.removeListener('pointerout');
                 game.scene.start('SceneGame2');
                 // game.scene.start('SceneGame');
                 this.sound.play('BtnClickSfx');
@@ -132,6 +184,7 @@ class SceneGameOver extends Phaser.Scene
     {
         var str = this.formutil.getTextAreaValue("emailText");
         console.log(str);
+        //this.GenerateRedirectButton();
         if(ValidateEmail(str))
         {
             var sceneref = this;
@@ -163,6 +216,7 @@ class SceneGameOver extends Phaser.Scene
                         sceneref.goBtn.removeListener('pointerover');
                         sceneref.goBtn.removeListener('pointerout');
                         sceneref.scratch.setTint(0xffffff);
+                        sceneref.GenerateRedirectButton();
                         sceneref.ScratchCardGenerate(sceneref.scratch);
                         sceneref.scratch.setVisible(false);
                     }
@@ -174,6 +228,29 @@ class SceneGameOver extends Phaser.Scene
             console.log("InValid");
             document.getElementById("emailText").value = "";
         }
+    }
+
+    GenerateRedirectButton()
+    {
+        this.visitBtn = this.add.image(this.scratchback.x,this.scratchback.y+this.scratchback.displayHeight/2+10,'visitImg').setOrigin(0.5,0).setInteractive();
+        Align.scaleToGameW(this.visitBtn,0.3,this);
+        this.BtnInitScale = {x:this.visitBtn.scaleX, y:this.visitBtn.scaleY};
+        this.BtnOverScale = {x:this.visitBtn.scaleX*0.9,y:this.visitBtn.scaleY*0.9};
+        this.visitBtn.on('pointerover',function(pointer){
+            this.visitBtn.setScale(this.BtnOverScale.x,this.BtnOverScale.y);
+        },this);
+        this.visitBtn.on('pointerout',function(pointer){
+            this.retryBtn.setScale(this.BtnInitScale.x,this.BtnInitScale.y);
+        },this);
+        this.visitBtn.on('pointerdown',function(pointer){
+            // this.visitBtn.removeListener('pointerdown');
+            // this.visitBtn.removeListener('pointerover');
+            // this.visitBtn.removeListener('pointerout');
+            this.openExternalLink();
+            //game.scene.start('SceneGame2');
+            // game.scene.start('SceneGame');
+            this.sound.play('BtnClickSfx');
+        },this);
     }
 
     ScratchCardGenerate(scratchback)
@@ -197,6 +274,24 @@ class SceneGameOver extends Phaser.Scene
             rt.erase(brush, pointer.x - offset.x, pointer.y - offset.y);
 
         }, this);
+    }
+
+    openExternalLink ()
+    {
+        //var tweet = 'I am testing a button from within a Phaser example';
+
+        var url = 'https://soulfull.co.in';
+
+        var s = window.open(url, '_blank');
+
+        if (s && s.focus)
+        {
+            s.focus();
+        }
+        else if (!s)
+        {
+            window.location.href = url;
+        }
     }
 }
 

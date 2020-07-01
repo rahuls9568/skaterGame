@@ -13,7 +13,8 @@ class SceneInstruction extends Phaser.Scene
         this.load.image('insLogo','images/logo.png');
         this.load.image('insBtn','images/Intro Screen/assets/play-btn.png');
         this.load.image('insInsBtn','images/Intro Screen/assets/insturctions-btn.png');
-        this.load.image('insPopup','images/Instructions Popup/instructionsPanel.png')
+        this.load.image('insPopup','images/instructions (1).png')
+        // this.load.image('insPopup','images/Instructions Popup/instructionsPanel.png')
 
         this.load.audio('insClickSfx','audio/clickAudio.wav');
     }
@@ -36,14 +37,24 @@ class SceneInstruction extends Phaser.Scene
         Align.scaleToGameH(this.bg,1,this);
         if(currentFont == fontSettings.pc)
             Align.scaleToGameW(this.bg,1,this);
-        this.agrid.placeAtIndex(82,this.btn);
+        //this.agrid.placeAtIndex(82,this.btn);
         Align.scaleToGameW(this.btn,0.3,this);
         this.agrid.placeAtIndex(49,this.cover);
         Align.scaleToGameW(this.cover,0.5,this);
         this.agrid.placeAtIndex(5,this.logo);
         Align.scaleToGameW(this.logo,0.3,this);
-        this.agrid.placeAtIndex(60,this.popup);
-        Align.scaleToGameW(this.popup,0.6,this);
+        if(currentFont == fontSettings.pc)
+        {
+            this.agrid.placeAtIndex(60,this.popup);
+            Align.scaleToGameW(this.popup,0.75,this);
+        }
+        else
+        {
+            this.agrid.placeAtIndex(60,this.popup);
+            Align.scaleToGameH(this.popup,0.75,this);
+        }
+        this.btn.x=this.popup.x;
+        this.btn.y = this.popup.y + this.popup.displayHeight/4;
 
         var str = [
             "Power up Cruncha Muncha by collecting the goodies along the way.",
@@ -51,13 +62,13 @@ class SceneInstruction extends Phaser.Scene
             "Avoid the nasty obstacles that come your way. Like you, we too dislike oil, maida, and chemicals."
         ]
         
-        var graphics = this.make.graphics();
-	    // graphics.fillStyle(0xffffff);
-	    graphics.fillRect(this.popup.x-this.popup.displayWidth/2, this.popup.y-this.popup.displayHeight/2, this.popup.displayWidth, this.popup.displayHeight);
-	    var mask = new Phaser.Display.Masks.GeometryMask(this, graphics);
+        // var graphics = this.make.graphics();
+	    // // graphics.fillStyle(0xffffff);
+	    // graphics.fillRect(this.popup.x-this.popup.displayWidth/2, this.popup.y-this.popup.displayHeight/2, this.popup.displayWidth, this.popup.displayHeight);
+	    // var mask = new Phaser.Display.Masks.GeometryMask(this, graphics);
         
-	    var insText= this.add.text(this.popup.x, this.popup.y+this.popup.displayHeight*0.03, str, { fontFamily:"myFont", fontSize:currentFont.instText, color: '#000000', align:"center", wordWrap: { width: this.popup.displayWidth*0.8 } }).setOrigin(0.5,0);
-	    insText.setMask(mask);
+	    // var insText= this.add.text(this.popup.x, this.popup.y+this.popup.displayHeight*0.03, str, { fontFamily:"myFont", fontSize:currentFont.instText, color: '#000000', align:"center", wordWrap: { width: this.popup.displayWidth*0.8 } }).setOrigin(0.5,0);
+	    // insText.setMask(mask);
 
         
         this.btnInitScale = {x:this.btn.scaleX,y:this.btn.scaleY};
