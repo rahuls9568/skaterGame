@@ -700,11 +700,13 @@ class SceneGame2 extends Phaser.Scene
                     this.player.body.gravityScale.y = 0;
                     //console.log('player reset');
                     this.player.play('idle');
-                    //this.isGameOver=true;
                     this.UpdateLife();
                     this.resetFlag = true;
-
+                    
                     this.sound.play('gameHitSfx');
+                    
+                    // this.isGameOver=true;
+                    // GAME_OVER_TYPE = "WIN"
                 }
             }
         }
