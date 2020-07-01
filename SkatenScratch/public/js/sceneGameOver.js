@@ -35,7 +35,7 @@ class SceneGameOver extends Phaser.Scene
         Align.scaleToGameH(this.bg,1,this);
 
         this.formutil = new FormUtil({scene:this,rows:15,cols:15});
-        this.formutil.showNumbers();
+        //this.formutil.showNumbers();
         
         if(GAME_OVER_TYPE == "WIN")
         {
