@@ -219,6 +219,9 @@ class SceneGameOver extends Phaser.Scene
                         sceneref.GenerateRedirectButton();
                         sceneref.ScratchCardGenerate(sceneref.scratch);
                         sceneref.scratch.setVisible(false);
+                        
+                        sceneref.formutil.hideElement("emailText");
+                        sceneref.goBtn.setVisible(false);
                     }
                 }
             });
