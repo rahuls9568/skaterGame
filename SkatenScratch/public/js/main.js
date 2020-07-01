@@ -3,7 +3,7 @@ var game;
 var fontSettings = {
     mobile16x9:{
         name:"16x9",
-        instText:8,
+        instText:10,
         scoreLifeText:"bold 20px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
@@ -13,7 +13,7 @@ var fontSettings = {
     },
     mobile19x9:{
         name:"19x9",
-        instText:8,
+        instText:12,
         scoreLifeText:"bold 22px Arial",
         codeText:"bold 20px Arial",
         UICamDiff:1,
@@ -43,6 +43,7 @@ var fontSettings = {
     } 
 }
 var currentFont;
+var isCenterable = true;
 window.onload = function() {
     
 }
@@ -57,6 +58,7 @@ currentFont = fontSettings.pc;
 if (isMobile != -1) {
     w = window.innerWidth;
     h = window.innerHeight;
+    isCenterable = false;
     currentFont = GetSettings(w,h);
 }
 var config = {
@@ -74,7 +76,13 @@ var config = {
                 y: 1
             }
         }
-    }
+    },
+    // scale: {
+    //     parent: 'phaser-game',
+    //     autoCenter: isCenterable?Phaser.Scale.CENTER_BOTH:Phaser.Scale.NO_CENTER,
+    //     width: w,
+    //     height: h
+    // },
 };
 game = new Phaser.Game(config);
 

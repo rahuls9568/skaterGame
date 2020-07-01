@@ -10,11 +10,13 @@ class SceneMain extends Phaser.Scene
         
         this.load.image('gamebg','images/assets/BG7.jpg');
 
-        this.load.image('introBg','images/Intro Screen/assets/background.jpg')
+        this.load.image('introBg','images/home-bg.jpg')
+        //this.load.image('introBg','images/Intro Screen/assets/background.jpg')
         this.load.image('introCover','images/Intro Screen/assets/intro-title.png');
         this.load.image('introLogo','images/logo.png');
         this.load.image('introBtn','images/Intro Screen/assets/play-btn.png');
         this.load.image('introInsBtn','images/Intro Screen/assets/insturctions-btn.png');
+        this.load.image('htplayImg','images/How to play.png');
 
         this.load.audio('introClickSfx','audio/clickAudio.wav');
     }
@@ -22,9 +24,10 @@ class SceneMain extends Phaser.Scene
     {
         this.bg = this.add.image(0,0,'introBg').setOrigin(0.5,1);
         this.cover = this.add.image(0,0,'introCover').setOrigin(0.5);
-        this.logo = this.add.image(0,0,'introLogo').setOrigin(0.5);
+        this.logo = this.add.image(0,0,'introLogo').setOrigin(0.5).setVisible(false);
         this.btn = this.add.image(0,0,'introBtn').setOrigin(0.5).setInteractive();
         this.insBtn = this.add.image(0,0,'introInsBtn').setOrigin(0.5).setInteractive();
+        this.htp = this.add.image(0,0,'htplayImg').setOrigin(0.5,0);
         //this.text = this.add.text(0,0,"CLICK TO START",{font:"bold 30px Arial",fill:"#FF0000",align:"center"}).setOrigin(0.5);
         this.isTouchFlag = false;
         
@@ -41,13 +44,24 @@ class SceneMain extends Phaser.Scene
         Align.scaleToGameW(this.btn,0.3,this);
         this.agrid.placeAtIndex(95,this.insBtn);
         Align.scaleToGameW(this.insBtn,0.1,this);
+        //this.agrid.placeAtIndex(95,this.htp);
+        this.htp.x = this.insBtn.x;
+        this.htp.y = this.insBtn.y+this.insBtn.displayHeight/4;
+        Align.scaleToGameW(this.htp,0.15,this);
         this.agrid.placeAtIndex(49,this.cover);
-        Align.scaleToGameW(this.cover,0.5,this);
-        this.agrid.placeAtIndex(5,this.logo);
-        Align.scaleToGameW(this.logo,0.3,this);
+        Align.scaleToGameH(this.cover,0.4,this);
+        if(currentFont == fontSettings.pc)
+        {
+            this.logo.setVisible(true);
+            this.agrid.placeAtIndex(5,this.logo);
+            Align.scaleToGameW(this.logo,0.3,this);
+        }
         
         this.btnInitScale = {x:this.btn.scaleX,y:this.btn.scaleY};
         this.btnOverScale = {x:this.btn.scaleX*0.9,y:this.btn.scaleY*0.9};
+        this.insbtnInitScale = {x:this.insBtn.scaleX,y:this.insBtn.scaleY};
+        this.insbtnOverScale = {x:this.insBtn.scaleX*0.9,y:this.insBtn.scaleY*0.9};
+        
         
 
         //this.agrid.placeAtIndex(27,this.text);
@@ -80,10 +94,10 @@ class SceneMain extends Phaser.Scene
             game.scene.start('SceneInstruction');
         },this)
         this.insBtn.on('pointerover',function(pointer){
-            this.insBtn.setScale(this.btnOverScale.x,this.btnOverScale.y);
+            this.insBtn.setScale(this.insbtnOverScale.x,this.insbtnOverScale.y);
         },this)
         this.insBtn.on('pointerout',function(pointer){
-            this.insBtn.setScale(this.btnInitScale.x,this.btnInitScale.y);
+            this.insBtn.setScale(this.insbtnInitScale.x,this.insbtnInitScale.y);
         },this)
         
         
