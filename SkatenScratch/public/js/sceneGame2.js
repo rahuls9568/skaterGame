@@ -724,8 +724,8 @@ class SceneGame2 extends Phaser.Scene
                     
                     this.sound.play('gameHitSfx');
                     
-                    //this.isGameOver=true;
-                    //GAME_OVER_TYPE = "WIN"
+                    // this.isGameOver=true;
+                    // GAME_OVER_TYPE = "WIN"
                 }
             }
         }

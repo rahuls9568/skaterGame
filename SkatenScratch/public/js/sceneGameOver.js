@@ -136,9 +136,9 @@ class SceneGameOver extends Phaser.Scene
             currentFont == fontSettings.pc ? Align.scaleToGameW(this.text,0.6,this) : Align.scaleToGameW(this.text,0.8,this);
             this.text.x = this.coverImg.x;
             this.text.y = this.coverImg.y + this.coverImg.displayHeight/2;
-            this.agrid.placeAtIndex(185,this.retryBtn);
+            this.agrid.placeAtIndex(200,this.retryBtn);
             Align.scaleToGameW(this.retryBtn,0.3,this);
-            this.agrid.placeAtIndex(189,this.ins);
+            this.agrid.placeAtIndex(204,this.ins);
             Align.scaleToGameW(this.ins,0.1,this);
             this.htp.x = this.ins.x;
             this.htp.y = this.ins.y+this.ins.displayHeight/4;
