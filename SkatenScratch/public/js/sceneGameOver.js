@@ -45,6 +45,8 @@ class SceneGameOver extends Phaser.Scene
             this.goBG = this.add.image(0,0,'GObg').setOrigin(0.5);
             this.agrid.placeAtIndex(112,this.goBG);
             Align.scaleToGameH(this.goBG,1,this);
+            this.goBG.displayWidth = config.width;
+            this.goBG.displayHeight = config.height;
             this.scratchback = this.add.image(0,0,'scratchCardRevealed').setOrigin(0.5);
             this.agrid.placeAtIndex(112,this.scratchback);
             Align.scaleToGameH(this.scratchback,0.3,this);
