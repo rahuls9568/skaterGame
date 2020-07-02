@@ -6,7 +6,7 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="js/phaser.min.js"></script>
-    <script type="text/javascript" src="js/util/UiBlock.js"></script>
+    <script type="text/javascript" src="js/util/UIBlock.js"></script>
 	<script type="text/javascript" src="js/util/align.js"></script>
 	<script type="text/javascript" src="js/util/alignGrid.js"></script>
 	<script type="text/javascript" src="js/util/formUtil.js"></script>
