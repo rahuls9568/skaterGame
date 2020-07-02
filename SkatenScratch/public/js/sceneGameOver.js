@@ -31,13 +31,13 @@ class SceneGameOver extends Phaser.Scene
     create()
     {
         this.bg = this.add.image(0,0,'gamebg').setOrigin(0.5);
-        this.agrid = new AlignGrid({scene:this,rows:15,cols:15});
+        this.agrid = new AlignGrid({scene:this,rows:17,cols:15});
         //this.agrid.showNumbers();
         
         this.agrid.placeAtIndex(112,this.bg);
         Align.scaleToGameH(this.bg,1,this);
 
-        this.formutil = new FormUtil({scene:this,rows:15,cols:15});
+        this.formutil = new FormUtil({scene:this,rows:17,cols:15});
         //this.formutil.showNumbers();
         
         if(GAME_OVER_TYPE == "WIN")
@@ -83,8 +83,9 @@ class SceneGameOver extends Phaser.Scene
             Align.scaleToGameH(this.scratch,0.3,this);
             
             this.goBtn = this.add.image(0,0,'goBtn').setOrigin(0.5,0).setInteractive();
-            this.agrid.placeAtIndex(207,this.goBtn);
+            this.agrid.placeAtIndex(237,this.goBtn);
             Align.scaleToGameW(this.goBtn,0.15,this);
+            this.goBtn.y+=10;
             this.BtnInitScale = {x:this.goBtn.scaleX,y:this.goBtn.scaleY};
             this.BtnOverScale = {x:this.goBtn.scaleX*0.9,y:this.goBtn.scaleY*0.9};
             this.goBtn.on('pointerover',function(pointer){
@@ -98,21 +99,27 @@ class SceneGameOver extends Phaser.Scene
                 this.sound.play('BtnClickSfx');
             },this);
 
-            var texPos = this.agrid.getPosByIndex(201);
+            var texPos = this.agrid.getPosByIndex(231);
             this.emailText = this.add.text(texPos.x,texPos.y,"Enter your email and unlock your reward",{fontFamily:"Roboto",fontSize:currentFont.instText*1.5,align:"center"}).setOrigin(0.5,1);
             
             this.formutil.scaleToGameW("emailText",0.6);
-            this.formutil.placeElementAt(201,"emailText",true,false);
+            this.formutil.placeElementAtWithOffset(231,"emailText",10,true,false);
             this.formutil.showElement("emailText");
             var emailX = document.getElementById("emailText").style.left;
             emailX = emailX.replace("px", "");
             emailX = parseInt(emailX);
             var can = document.getElementById("phaser-game").lastElementChild;
-            var canX = can.style.marginLeft;
-            canX = canX.replace("px","");
-            canX = parseInt(canX);
-            emailX = emailX + canX;
-            console.log(canX);
+            if(can)
+            {
+                var canX = can.style.marginLeft;
+                if(canX)
+                {
+                    canX = canX.replace("px","");
+                    canX = parseInt(canX);
+                    emailX = emailX + canX;
+                    console.log(canX);
+                }
+            }
             document.getElementById("emailText").style.left = emailX+"px";
         }
         else
@@ -178,7 +185,7 @@ class SceneGameOver extends Phaser.Scene
             },this);
         }
 
-        // this.agrid2 = new AlignGrid({scene:this,rows:15,cols:15});
+        // this.agrid2 = new AlignGrid({scene:this,rows:17,cols:15});
         // this.agrid2.showNumbers();
     }
 

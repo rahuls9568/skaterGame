@@ -30,6 +30,50 @@ class FormUtil {
         var h = this.gameHeight * per;
         el.style.height = h + "px";
     }
+
+    placeElementAtWithOffset(index, elName, yoffset, centerX = true, centerY = false) {
+        //get the position from the grid
+        var pos = this.alignGrid.getPosByIndex(index);
+        console.log(pos);
+        //extract to local vars
+        var x = pos.x;
+        var y = pos.y;
+        //get the element
+        var el = document.getElementById(elName);
+        //set the position to absolute
+        el.style.position = "absolute";
+        //get the width of the element
+        var w = el.style.width;
+        //convert to a number
+        w = this.toNum(w);
+        console.log("w=" + w);
+        //
+        //
+        //center horizontal in square if needed
+        if (centerX == true) {
+            x -= w / 2;
+        }
+        //
+        //get the height
+        //        
+        var h = el.style.height;
+        //convert to a number
+        h = this.toNum(h);
+        //
+        //center verticaly in square if needed
+        //
+        if (centerY == true) {
+            y -= h / 2;
+        }
+        console.log("before y=" + y);
+        y += parseInt(yoffset);
+        console.log("after y=" + y);
+        console.log("x=" + x);
+        //set the positions
+        el.style.top = y + "px";
+        el.style.left = x + "px";
+    }
+    
     placeElementAt(index, elName, centerX = true, centerY = false) {
         //get the position from the grid
         var pos = this.alignGrid.getPosByIndex(index);
@@ -65,6 +109,7 @@ class FormUtil {
             y -= h / 2;
         }
         console.log("x=" + x);
+        console.log("y=" + y);
         //set the positions
         el.style.top = y + "px";
         el.style.left = x + "px";
