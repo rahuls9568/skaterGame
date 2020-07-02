@@ -51,12 +51,12 @@ class SceneInstruction extends Phaser.Scene
             this.agrid.placeAtIndex(60,this.popup);
             //Align.scaleToGameH(this.popup,0.75,this);
             this.popup.displayWidth = config.width*1;
-            this.popup.displayHeight = config.height*1;
+            this.popup.displayHeight = config.height*0.65;
         }
         //this.agrid.placeAtIndex(82,this.btn);
         Align.scaleToGameW(this.btn,0.3,this);
         this.btn.x=this.popup.x;
-        this.btn.y = this.popup.y + this.popup.displayHeight/4;
+        this.btn.y = this.popup.y + this.popup.displayHeight/2 - this.popup.displayHeight*0.05;
         
         // var str = [
         //     "Power up Cruncha Muncha by collecting the goodies along the way.",
