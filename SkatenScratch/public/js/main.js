@@ -89,12 +89,12 @@ var config = {
             }
         }
     },
-    // scale: {
-    //     parent: 'phaser-game',
-    //     autoCenter: isCenterable?Phaser.Scale.CENTER_BOTH:Phaser.Scale.NO_CENTER,
-    //     width: w,
-    //     height: h
-    // },
+    scale: {
+        parent: 'phaser-game',
+        autoCenter: isCenterable?Phaser.Scale.CENTER_BOTH:Phaser.Scale.NO_CENTER,
+        width: w,
+        height: h
+    },
 };
 game = new Phaser.Game(config);
 
