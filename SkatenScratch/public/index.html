@@ -20,6 +20,7 @@
         #phaser-game
         {
             background-color: #46357b;
+            color: chartreuse;
             width: 100%;
             height: 100%;
             margin-top: -8px;
