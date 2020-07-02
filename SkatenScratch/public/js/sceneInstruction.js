@@ -13,7 +13,7 @@ class SceneInstruction extends Phaser.Scene
         this.load.image('insLogo','images/logo.png');
         this.load.image('insBtn','images/Intro Screen/assets/play-btn.png');
         this.load.image('insInsBtn','images/Intro Screen/assets/insturctions-btn.png');
-        this.load.image('insPopup','images/instructions (1).png')
+        this.load.image('insPopup','images/instructions (2).png')
         // this.load.image('insPopup','images/Instructions Popup/instructionsPanel.png')
 
         this.load.audio('insClickSfx','audio/clickAudio.wav');

@@ -102,9 +102,18 @@ class SceneGameOver extends Phaser.Scene
             this.emailText = this.add.text(texPos.x,texPos.y,"Enter your email and unlock your reward",{fontFamily:"Roboto",fontSize:currentFont.instText*1.5,align:"center"}).setOrigin(0.5,1);
             
             this.formutil.scaleToGameW("emailText",0.6);
-            this.formutil.placeElementAt(201,"emailText");
+            this.formutil.placeElementAt(201,"emailText",true,false);
             this.formutil.showElement("emailText");
-            
+            var emailX = document.getElementById("emailText").style.left;
+            emailX = emailX.replace("px", "");
+            emailX = parseInt(emailX);
+            var can = document.getElementById("phaser-game").lastElementChild;
+            var canX = can.style.marginLeft;
+            canX = canX.replace("px","");
+            canX = parseInt(canX);
+            emailX = emailX + canX;
+            console.log(canX);
+            document.getElementById("emailText").style.left = emailX+"px";
         }
         else
         {

@@ -76,11 +76,11 @@ class SceneGame2 extends Phaser.Scene
         GRAVITY = currentFont.gravity;
         THRUST_SPEED = currentFont.thrustspeed;
         //console.log(this.cam);
+        this.behindBG = this.add.image(0,0,'gamebg').setOrigin(0.0);
         this.bg = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});
         this.bg2 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});            //,render: { sprite: { xOffset: 100, yOffset: 125 } }
         this.bg3 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
         this.bg4 = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_drop}).setActive(true).setVisible(false);
-
         this.oilmessage1 = this.add.image(0,0,'oilmessage').setOrigin(0.5);
         this.oilmessage2 = this.add.image(0,0,'oilmessage').setOrigin(0.5);
         
@@ -95,6 +95,9 @@ class SceneGame2 extends Phaser.Scene
         ///////////////////.......BACKGROUNDS......\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         // this.bg = this.matter.add.sprite(0,0,'gamebg',null,{shape:shapes.bg_path});
         //this.agrid.placeAtIndex(112,this.bg);
+
+        Align.scaleToGameH(this.behindBG,1,this);
+
         Align.scaleToGameH(this.bg,1,this);
         this.bg.setPosition(0 + this.bg.centerOfMass.x, config.height*0.865 + this.bg.centerOfMass.y);
         this.bg.body.gravityScale.x = 0;
@@ -422,14 +425,14 @@ class SceneGame2 extends Phaser.Scene
         //this.player.x += 7;
         if(!this.resetFlag)
             this.cam.scrollX = this.player.x - 50;
-
+        
         this.bgGroup.children.each(function (b){
             if(b!= null)
             {
                 //b.x -= BG_MOVE_SPEED;
                 if(b.x + b.displayWidth < this.cam.scrollX)
                 {
-                    b.x = this.cam.scrollX -(Math.abs(this.cam.scrollX-prevPos)) + b.centerOfMass.x + b.displayWidth;
+                    b.x = this.cam.scrollX -(4*Math.abs(this.cam.scrollX-prevPos)) + b.centerOfMass.x + b.displayWidth;
                     this.oilmessage1.x = this.bg.x - oil1dist;
                     this.oilmessage2.x = this.bg2.x - oil2dist;
                 }
@@ -446,6 +449,17 @@ class SceneGame2 extends Phaser.Scene
                 }
             }
         }.bind(this))
+
+        // if(this.bg.x+this.bg.displayWidth < this.cam.scrollX)
+        // {
+        //     this.bg.x = this.bg.centerOfMass.x + this.bg2.x+this.bg2.displayWidth;
+        //     this.bg3.x = this.bg.x -this.bg3.displayWidth*0.107 + this.bg3.centerOfMass.x
+        // }
+        // if(this.bg2.x+this.bg2.displayWidth < this.cam.scrollX)
+        // {
+        //     this.bg2.x = this.bg2.centerOfMass.x + this.bg.x+this.bg.displayWidth;
+        //     this.bg4.x = this.bg2.x - this.bg4.displayWidth*0.107+ this.bg4.centerOfMass.x
+        // }
 
         this.collectibleGroup.children.each(function (b) {
             if(b != null)
