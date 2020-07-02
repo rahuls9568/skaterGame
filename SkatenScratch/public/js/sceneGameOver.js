@@ -62,8 +62,7 @@ class SceneGameOver extends Phaser.Scene
             // Align.scaleToGameW(this.wohooImg,0.5,this);
             var wohooText = this.add.text(this.scratchback.x,this.scratchback.y-this.scratchback.displayHeight,"WOOHOO!",{fontFamily:"myFont",fontSize:currentFont.instText*4,fill:"#e4ca07",align:"center"}).setOrigin(0.5);
             var wohooText2 = this.add.text(wohooText.x,wohooText.y+40,"You've earned a reward",{fontFamily:"Roboto",fontSize:currentFont.instText*2,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
-            var pos = this.agrid.getPosByIndex(157);
-            var swipeText = this.add.text(pos.x,pos.y,"Swipe back and forth to reveal reward",{fontFamily:"Roboto",fontSize:currentFont.instText,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
+            
             var graphics = this.make.graphics();
 
             // graphics.fillStyle(0xffffff);
@@ -289,6 +288,8 @@ class SceneGameOver extends Phaser.Scene
         this.visitBtn = this.add.image(0,0,'visitImg').setOrigin(0.5,0).setInteractive();
         this.agrid.placeAtIndex(187,this.visitBtn)
         Align.scaleToGameW(this.visitBtn,0.3,this);
+        var pos = this.agrid.getPosByIndex(157);
+        var swipeText = this.add.text(pos.x,pos.y,"Swipe back and forth to reveal reward",{fontFamily:"Roboto",fontSize:currentFont.instText,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
         var visitText = this.add.text(this.visitBtn.x,this.visitBtn.y,"Head over to our website and see the entire range",{fontFamily:"Roboto",fontSize:currentFont.instText*1.5,align:"center",wordWrap:{width:config.width*0.9}}).setOrigin(0.5,1);
         this.visBtnInitScale = {x:this.visitBtn.scaleX, y:this.visitBtn.scaleY};
         this.visBtnOverScale = {x:this.visitBtn.scaleX*0.9,y:this.visitBtn.scaleY*0.9};
