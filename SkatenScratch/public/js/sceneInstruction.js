@@ -37,8 +37,6 @@ class SceneInstruction extends Phaser.Scene
         Align.scaleToGameH(this.bg,1,this);
         if(currentFont == fontSettings.pc)
             Align.scaleToGameW(this.bg,1,this);
-        //this.agrid.placeAtIndex(82,this.btn);
-        Align.scaleToGameW(this.btn,0.3,this);
         this.agrid.placeAtIndex(49,this.cover);
         Align.scaleToGameW(this.cover,0.5,this);
         this.agrid.placeAtIndex(5,this.logo);
@@ -51,16 +49,20 @@ class SceneInstruction extends Phaser.Scene
         else
         {
             this.agrid.placeAtIndex(60,this.popup);
-            Align.scaleToGameH(this.popup,0.75,this);
+            //Align.scaleToGameH(this.popup,0.75,this);
+            this.popup.displayWidth = config.width*1;
+            this.popup.displayHeight = config.height*1;
         }
+        //this.agrid.placeAtIndex(82,this.btn);
+        Align.scaleToGameW(this.btn,0.3,this);
         this.btn.x=this.popup.x;
         this.btn.y = this.popup.y + this.popup.displayHeight/4;
-
-        var str = [
-            "Power up Cruncha Muncha by collecting the goodies along the way.",
-            "",
-            "Avoid the nasty obstacles that come your way. Like you, we too dislike oil, maida, and chemicals."
-        ]
+        
+        // var str = [
+        //     "Power up Cruncha Muncha by collecting the goodies along the way.",
+        //     "",
+        //     "Avoid the nasty obstacles that come your way. Like you, we too dislike oil, maida, and chemicals."
+        // ]
         
         // var graphics = this.make.graphics();
 	    // // graphics.fillStyle(0xffffff);

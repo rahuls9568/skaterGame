@@ -10,36 +10,48 @@ var fontSettings = {
         thrustspeed: 0.05,
         jumpSpeed:-0.875,
         gravity:0.002,
+        scratch:{
+            offsetMultiplier:{x:1,y:4}
+        }
     },
     mobile19x9:{
         name:"19x9",
         instText:12,
-        scoreLifeText:"bold 22px Arial",
-        codeText:"bold 20px Arial",
+        scoreLifeText:"bold 22px Roboto",
+        codeText:"bold 20px Roboto",
         UICamDiff:1,
         thrustspeed: 0.085,
         jumpSpeed:-0.9,
         gravity:0.002,
+        scratch:{
+            offsetMultiplier:{x:1,y:5}
+        }
     },
     mobile4x3:{
         name:"4x3",
         instText:10,
-        scoreLifeText:"bold 40px Arial",
-        codeText:"bold 20px Arial",
+        scoreLifeText:"bold 40px Roboto",
+        codeText:"bold 20px Roboto",
         UICamDiff:1,
         thrustspeed: 0.0475,
         jumpSpeed:-1,
         gravity:0.002,
+        scratch:{
+            offsetMultiplier:{x:3,y:4}
+        }
     },
     pc:{
         name:"pc",
         instText:12,
-        scoreLifeText:"bold 30px Arial",
-        codeText:"bold 20px Arial",
+        scoreLifeText:"bold 30px Roboto",
+        codeText:"bold 20px Roboto",
         UICamDiff:1,
         thrustspeed: 0.05,
         jumpSpeed:-0.85,
         gravity:0.002,
+        scratch:{
+            offsetMultiplier:{x:3,y:4}
+        }
     } 
 }
 var currentFont;
