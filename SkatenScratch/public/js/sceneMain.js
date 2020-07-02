@@ -17,6 +17,7 @@ class SceneMain extends Phaser.Scene
         this.load.image('introBtn','images/Intro Screen/assets/play-btn.png');
         this.load.image('introInsBtn','images/Intro Screen/assets/insturctions-btn.png');
         this.load.image('htplayImg','images/How to play.png');
+        this.load.image('introtextimg','images/Retry screen text.png')
 
         this.load.audio('introClickSfx','audio/clickAudio.wav');
     }
@@ -28,6 +29,7 @@ class SceneMain extends Phaser.Scene
         this.btn = this.add.image(0,0,'introBtn').setOrigin(0.5).setInteractive();
         this.insBtn = this.add.image(0,0,'introInsBtn').setOrigin(0.5).setInteractive();
         this.htp = this.add.image(0,0,'htplayImg').setOrigin(0.5,0);
+        this.intrText = this.add.image(0,0,'introtextimg').setOrigin(0.5,0);
         //this.text = this.add.text(0,0,"CLICK TO START",{font:"bold 30px Arial",fill:"#FF0000",align:"center"}).setOrigin(0.5);
         this.isTouchFlag = false;
         
@@ -56,6 +58,8 @@ class SceneMain extends Phaser.Scene
             this.agrid.placeAtIndex(5,this.logo);
             Align.scaleToGameW(this.logo,0.3,this);
         }
+        this.agrid.placeAtIndex(71,this.intrText)
+        currentFont == fontSettings.pc ? Align.scaleToGameW(this.intrText,0.6,this) : Align.scaleToGameW(this.intrText,0.8,this); 
         
         this.btnInitScale = {x:this.btn.scaleX,y:this.btn.scaleY};
         this.btnOverScale = {x:this.btn.scaleX*0.9,y:this.btn.scaleY*0.9};
