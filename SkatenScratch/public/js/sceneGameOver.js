@@ -34,7 +34,7 @@ class SceneGameOver extends Phaser.Scene
         this.agrid = new AlignGrid({scene:this,rows:17,cols:15});
         //this.agrid.showNumbers();
         
-        this.agrid.placeAtIndex(112,this.bg);
+        this.agrid.placeAtIndex(127,this.bg);
         Align.scaleToGameH(this.bg,1,this);
 
         this.formutil = new FormUtil({scene:this,rows:17,cols:15});
@@ -43,10 +43,10 @@ class SceneGameOver extends Phaser.Scene
         if(GAME_OVER_TYPE == "WIN")
         {
             this.goBG = this.add.image(0,0,'GObg').setOrigin(0.5);
-            this.agrid.placeAtIndex(112,this.goBG);
+            this.agrid.placeAtIndex(127,this.goBG);
             Align.scaleToGameH(this.goBG,1,this);
-            this.goBG.displayWidth = config.width;
-            this.goBG.displayHeight = config.height;
+            // this.goBG.displayHeight = config.height;
+            // this.goBG.displayWidth = config.width;
             this.scratchback = this.add.image(0,0,'scratchCardRevealed').setOrigin(0.5);
             this.agrid.placeAtIndex(112,this.scratchback);
             Align.scaleToGameH(this.scratchback,0.3,this);
@@ -265,17 +265,17 @@ class SceneGameOver extends Phaser.Scene
                 }
             });
             // console.log("Legit EMAiL");
-            //             sceneref.goBtn.removeListener('pointerdown');
-            //             sceneref.goBtn.removeListener('pointerover');
-            //             sceneref.goBtn.removeListener('pointerout');
-            //             sceneref.formutil.hideElement("emailText");
-            //             sceneref.goBtn.setVisible(false);
-            //             sceneref.emailcon.setVisible(false);
-            //             sceneref.emailText.setVisible(false);
-            //             sceneref.scratch.setTint(0xffffff);
-            //             sceneref.GenerateRedirectButton();
-            //             sceneref.ScratchCardGenerate(sceneref.scratch);
-            //             sceneref.scratch.setVisible(false);
+            // sceneref.goBtn.removeListener('pointerdown');
+            // sceneref.goBtn.removeListener('pointerover');
+            // sceneref.goBtn.removeListener('pointerout');
+            // sceneref.formutil.hideElement("emailText");
+            // sceneref.goBtn.setVisible(false);
+            // sceneref.emailcon.setVisible(false);
+            // sceneref.emailText.setVisible(false);
+            // sceneref.scratch.setTint(0xffffff);
+            // sceneref.GenerateRedirectButton();
+            // sceneref.ScratchCardGenerate(sceneref.scratch);
+            // sceneref.scratch.setVisible(false);
         }
         else
         {
