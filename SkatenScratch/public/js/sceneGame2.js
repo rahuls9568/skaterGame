@@ -272,6 +272,8 @@ class SceneGame2 extends Phaser.Scene
         {
             if(this.resetFlag)
             {
+                this.player.body.gravityScale.x = 0;
+                this.player.body.gravityScale.y = 0;
                 this.resetTimer+=game.loop.delta;
                 if(this.resetTimer>=750)
                 {
@@ -360,6 +362,7 @@ class SceneGame2 extends Phaser.Scene
             GAME_OVER_TYPE = "WIN";
             this.isGameOver=true;
             this.collectibleGroup.clear(true,true);
+            this.RagiGroup.clear(true,true);
             this.obstacleGroup.clear(true,true);
         }
     }
@@ -417,7 +420,8 @@ class SceneGame2 extends Phaser.Scene
         var prevPos = this.cam.scrollX;
         this.MovePLayer();
         //this.player.x += 7;
-        this.cam.scrollX = this.player.x - 50;
+        if(!this.resetFlag)
+            this.cam.scrollX = this.player.x - 50;
 
         this.bgGroup.children.each(function (b){
             if(b!= null)
@@ -512,7 +516,8 @@ class SceneGame2 extends Phaser.Scene
         {
             if(b != null)
             {
-                b.x += Math.abs(prevPos - this.cam.scrollX) > currentFont.UICamDiff? Math.abs(prevPos - this.cam.scrollX): 0;
+                if(!this.resetFlag)
+                    b.x += Math.abs(prevPos - this.cam.scrollX) > currentFont.UICamDiff? Math.abs(prevPos - this.cam.scrollX): 0;
             }
         }.bind(this));
     }
@@ -727,7 +732,7 @@ class SceneGame2 extends Phaser.Scene
 
             if(collectible)
             {
-                var text = this.add.text(collectible.x, collectible.y-20,"+10",{ font: 'bold 35px Arial', color: '#f0ec0e', wordWrap: { width: 200 } }).setOrigin(0.5);
+                var text = this.add.text(collectible.x, collectible.y-20,"+10",{ font: 'bold 35px myFont', color: '#f0ec0e', wordWrap: { width: 200 } }).setOrigin(0.5);
                 var notice = this.add.image(collectible.x+30,collectible.y-50, 'maizemessage');
                 Align.scaleToGameH(notice,0.2,this);
                 this.tweens.add({
@@ -768,7 +773,7 @@ class SceneGame2 extends Phaser.Scene
 
             if(collectible)
             {
-                var text = this.add.text(collectible.x, collectible.y-20,"+10",{ font: 'bold 35px Arial', color: '#f0ec0e', wordWrap: { width: 200 } }).setOrigin(0.5);
+                var text = this.add.text(collectible.x, collectible.y-20,"+10",{ font: 'bold 35px myFont', color: '#f0ec0e', wordWrap: { width: 200 } }).setOrigin(0.5);
                 var notice = this.add.image(collectible.x+30,collectible.y-50, 'bengalgrammessage');
                 Align.scaleToGameH(notice,0.2,this);
                 this.tweens.add({

@@ -55,13 +55,13 @@ class SceneGameOver extends Phaser.Scene
             this.emailcon.displayWidth = config.width;
             this.emailcon.displayHeight = config.height*0.15;
 
-            this.wohooImg = this.add.image(0,0,'gowohooImg').setOrigin(0.5);
-            this.agrid.placeAtIndex(37,this.wohooImg);
-            Align.scaleToGameW(this.wohooImg,0.5,this);
-            // var wohooText = this.add.text(this.scratchback.x,this.scratchback.y-this.scratchback.displayHeight,"WOOHOO!",{fontFamily:"myFont",fontSize:currentFont.instText*4,fill:"#f0ec0e",align:"center"}).setOrigin(0.5);
-            // var wohooText2 = this.add.text(wohooText.x,wohooText.y+40,"You've earned a reward",{fontFamily:"Arial",fontSize:currentFont.instText*2,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
+            // this.wohooImg = this.add.image(0,0,'gowohooImg').setOrigin(0.5);
+            // this.agrid.placeAtIndex(37,this.wohooImg);
+            // Align.scaleToGameW(this.wohooImg,0.5,this);
+            var wohooText = this.add.text(this.scratchback.x,this.scratchback.y-this.scratchback.displayHeight,"WOOHOO!",{fontFamily:"myFont",fontSize:currentFont.instText*4,fill:"#e4ca07",align:"center"}).setOrigin(0.5);
+            var wohooText2 = this.add.text(wohooText.x,wohooText.y+40,"You've earned a reward",{fontFamily:"Roboto",fontSize:currentFont.instText*2,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
             var pos = this.agrid.getPosByIndex(157);
-            var swipeText = this.add.text(pos.x,pos.y,"Swipe back and forth to reveal reward",{fontFamily:"Arial",fontSize:currentFont.instText,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
+            var swipeText = this.add.text(pos.x,pos.y,"Swipe back and forth to reveal reward",{fontFamily:"Roboto",fontSize:currentFont.instText,fill:"#FFFFFF",align:"center"}).setOrigin(0.5);
             var graphics = this.make.graphics();
 
             // graphics.fillStyle(0xffffff);
@@ -69,7 +69,7 @@ class SceneGameOver extends Phaser.Scene
 
             var mask = new Phaser.Display.Masks.GeometryMask(this, graphics);
             //this.Instext.setMask(mask);
-            var couponText = this.add.text(this.scratchback.x, this.scratchback.y-this.scratchback.displayHeight*0.4,"This one is for you",{font:currentFont.codeText,fill:"#f0ec0e",align:"center",wordWrap:{width:config.width*0.3}}).setOrigin(0.5,0);
+            var couponText = this.add.text(this.scratchback.x, this.scratchback.y-this.scratchback.displayHeight*0.4,"This one is for you",{font:currentFont.codeText,fill:"#e4ca07",align:"center",wordWrap:{width:config.width*0.3}}).setOrigin(0.5,0);
             couponText.setMask(mask);
             this.couponCodeText = this.add.text(this.scratchback.x,this.scratchback.y+50,"",{font:currentFont.codeText,fill:"#FFFFFF",align:"center", maxLines:2, wordwrap:{width:config.width*0.3}}).setOrigin(0.5);
             this.couponCodeText.setText("SAMPLE CODE");
@@ -97,6 +97,9 @@ class SceneGameOver extends Phaser.Scene
                 this.SubmitButton();
                 this.sound.play('BtnClickSfx');
             },this);
+
+            var texPos = this.agrid.getPosByIndex(201);
+            this.emailText = this.add.text(texPos.x,texPos.y,"Enter your email and unlock your reward",{fontFamily:"Roboto",fontSize:currentFont.instText*1.5,align:"center"}).setOrigin(0.5,1);
             
             this.formutil.scaleToGameW("emailText",0.6);
             this.formutil.placeElementAt(201,"emailText");
@@ -113,7 +116,8 @@ class SceneGameOver extends Phaser.Scene
 
             this.agrid.placeAtIndex(97,this.coverImg);
             Align.scaleToGameH(this.coverImg,0.5,this);
-            Align.scaleToGameW(this.text,0.5,this);
+            //Align.scaleToGameW(this.text,0.5,this);
+            currentFont == fontSettings.pc ? Align.scaleToGameW(this.text,0.6,this) : Align.scaleToGameW(this.text,0.8,this);
             this.text.x = this.coverImg.x;
             this.text.y = this.coverImg.y + this.coverImg.displayHeight/2;
             this.agrid.placeAtIndex(185,this.retryBtn);
@@ -234,6 +238,7 @@ class SceneGameOver extends Phaser.Scene
                         sceneref.formutil.hideElement("emailText");
                         sceneref.goBtn.setVisible(false);
                         sceneref.emailcon.setVisible(false);
+                        sceneref.emailText.setVisible(false);
                         sceneref.scratch.setTint(0xffffff);
                         sceneref.GenerateRedirectButton();
                         sceneref.ScratchCardGenerate(sceneref.scratch);
@@ -248,6 +253,7 @@ class SceneGameOver extends Phaser.Scene
             //             sceneref.formutil.hideElement("emailText");
             //             sceneref.goBtn.setVisible(false);
             //             sceneref.emailcon.setVisible(false);
+            //             sceneref.emailText.setVisible(false);
             //             sceneref.scratch.setTint(0xffffff);
             //             sceneref.GenerateRedirectButton();
             //             sceneref.ScratchCardGenerate(sceneref.scratch);
@@ -265,6 +271,7 @@ class SceneGameOver extends Phaser.Scene
         this.visitBtn = this.add.image(0,0,'visitImg').setOrigin(0.5,0).setInteractive();
         this.agrid.placeAtIndex(187,this.visitBtn)
         Align.scaleToGameW(this.visitBtn,0.3,this);
+        var visitText = this.add.text(this.visitBtn.x,this.visitBtn.y,"Head over to our website and see the entire range",{fontFamily:"Roboto",fontSize:currentFont.instText*1.5,align:"center",wordWrap:{width:config.width*0.9}}).setOrigin(0.5,1);
         this.visBtnInitScale = {x:this.visitBtn.scaleX, y:this.visitBtn.scaleY};
         this.visBtnOverScale = {x:this.visitBtn.scaleX*0.9,y:this.visitBtn.scaleY*0.9};
         this.visitBtn.on('pointerover',function(pointer){
@@ -289,7 +296,7 @@ class SceneGameOver extends Phaser.Scene
         var rt = this.add.renderTexture(scratchback.x-scratchback.displayWidth/2, scratchback.y-scratchback.displayHeight/2, scratchback.displayWidth, scratchback.displayHeight);
         rt.draw('scratchCard',0,0);
         var brush = this.make.image({ key: 'brushImg' }, false).setScale(1);
-        var offset = {x:brush.displayWidth*3,y:brush.displayHeight*4};
+        var offset = {x:brush.displayWidth*currentFont.scratch.offsetMultiplier.x,y:brush.displayHeight*currentFont.scratch.offsetMultiplier.y};
 
         this.input.on('pointermove', function (pointer) {
 
